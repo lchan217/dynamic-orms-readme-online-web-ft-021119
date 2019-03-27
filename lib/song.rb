@@ -1,6 +1,6 @@
 require_relative "../config/environment.rb"
 require 'active_support/inflector'
-
+require 'pry'
 class Song
 
   def self.table_name
@@ -44,8 +44,9 @@ class Song
     values = []
     self.class.column_names.each do |col_name|
       values << "'#{send(col_name)}'" unless send(col_name).nil?
+      binding.pry
     end
-    values.join(", ")
+    values.join(", ") 
   end
 
   def col_names_for_insert
